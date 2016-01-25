@@ -6,11 +6,11 @@ class TribeImporter
 
   def perform
     @fetcher.users.each do |user|
-      puts "Importing: #{user["id"]}- #{user["display_name"]}"
       response = @fetcher.user(user["id"])
       id, email, employee_record, assignment_record = response.values_at("id", "email", "employee_record", "assignment_record")
       department = assignment_record["department"]
       manager_id = assignment_record.fetch("manager", {})["id"]
+      
       if assignment_record["job"].any?
         title = assignment_record["job"]["title"]
         first_name, last_name = employee_record.values_at("first_name", "last_name")
@@ -25,7 +25,8 @@ class TribeImporter
 
   private
   def find_or_create_department(department)
-    Department.create_with(name: department["name"]).find_or_create_by(tribehr_id: department["id"])    
+    d = Department.find_or_initialize_by(tribehr_id: department["id"])
+    d.update_attributes!(name: department["name"])
   end
 
   
