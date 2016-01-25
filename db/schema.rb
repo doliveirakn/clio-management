@@ -18,13 +18,15 @@ ActiveRecord::Schema.define(version: 20160125174821) do
     t.string  "name",       limit: 30, null: false
   end
 
+  add_index "departments", ["tribehr_id"], name: "index_departments_on_tribehr_id"
+
   create_table "users", force: :cascade do |t|
     t.integer "tribehr_id",               null: false
     t.string  "email",         limit: 64, null: false
     t.integer "manager_id"
     t.string  "first_name",    limit: 32, null: false
     t.string  "last_name",     limit: 32, null: false
-    t.string  "title",         limit: 32, null: false
+    t.string  "title",         limit: 64, null: false
     t.integer "department_id",            null: false
   end
 

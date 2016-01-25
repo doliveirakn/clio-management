@@ -21,6 +21,8 @@ gem 'devise', '3.5.3'
 
 gem 'active_model_serializers', '0.10.0.rc1'
 
+gem 'rest-client', '1.8.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

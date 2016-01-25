@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :manager_id
       t.string :first_name, limit: 32, null: false
       t.string :last_name, limit: 32, null: false
-      t.string :title, limit: 32, null: false
+      t.string :title, limit: 64, null: false
       t.integer :department_id, null: false
 
       t.index :tribehr_id
